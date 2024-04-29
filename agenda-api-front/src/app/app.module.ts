@@ -9,6 +9,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { ContatoComponent } from './contato/contato.component';
 import { ContatoService } from './contato.service';
 
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatInputModule} from '@angular/material/input';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +22,8 @@ import { ContatoService } from './contato.service';
     BrowserModule,
     AppRoutingModule,  
     MatButtonModule,
+    MatToolbarModule,
+    MatInputModule,
     BrowserAnimationsModule
   ],
   providers: [
