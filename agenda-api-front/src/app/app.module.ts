@@ -6,10 +6,13 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { ContatoComponent } from './contato/contato.component';
+import { ContatoService } from './contato.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContatoComponent
   ],
   imports: [
     BrowserModule,
@@ -18,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule
   ],
   providers: [
+    ContatoService,
     provideClientHydration(),
     provideAnimationsAsync()
   ],
