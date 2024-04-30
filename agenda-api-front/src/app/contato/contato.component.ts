@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Contato } from './contato';
 import { ContatoService } from '../contato.service';
 
+
+import { FormBuilder, FormGroup, Validators} from '@angular/forms'
+
 @Component({
   selector: 'app-contato',
   templateUrl: './contato.component.html',
@@ -9,21 +12,32 @@ import { ContatoService } from '../contato.service';
 })
 export class ContatoComponent implements OnInit{
 
+  formulario : FormGroup = new FormGroup({});
 
 constructor(
-  private service : ContatoService
-){}
+  private service : ContatoService,
+  private fb : FormBuilder
+){
+}
+// TODO adicionar campo Telefone do contato
 
   ngOnInit(): void {
-   const c : Contato = new Contato();
-   c.nome = 'Jose'
-   c.email ='josé@rmail.com'
-   c.favorito = false;
+   this.formulario = this.fb.group({
+    nome: ['',Validators.required],
+    email : ['', Validators.email]
+   })
 
-   this.service.save(c).subscribe( 
-                                response => {
-                                  console.log(response);
-                                })
+
+  }
+
+
+  submit(){
+    console.log(this.formulario.value)
+    //this.service.save(c).subscribe( 
+      //response => {
+        //console.log(response);
+     // })
+
   }
 
 }
