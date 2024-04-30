@@ -14,7 +14,7 @@ export class ContatoComponent implements OnInit{
 
   formulario : FormGroup = new FormGroup({});
   contatos: Contato[] = []
-  message?: string;
+  colunas = [ 'id', 'nome', 'email', 'favorito']
 
 constructor(
   private service : ContatoService,
@@ -24,14 +24,30 @@ constructor(
 // TODO adicionar campo Telefone do contato
 
   ngOnInit(): void {
-   this.formulario = this.fb.group({
-    nome: ['',Validators.required],
-    email : ['', [Validators.required, Validators.email]] //Validators.required para identificar o campo como obrigatorio, nesse caso ha duas formas de validação, ebntão coloque dentro de um Array
    
-  })
+   this.montarFormulario();
+   this.listarContatos();
+  }
 
+
+  montarFormulario(){
+    this.formulario = this.fb.group({
+      nome: ['',Validators.required],
+      email : ['', [Validators.required, Validators.email]] //Validators.required para identificar o campo como obrigatorio, nesse caso ha duas formas de validação, ebntão coloque dentro de um Array
+     
+
+    })
+}
+
+  listarContatos(){
+    this.service.list().subscribe(response => {
+      this.contatos = response
+    })
 
   }
+
+
+
   submit(){
     const formValues = this.formulario.value;
      const contato : Contato = new Contato(formValues.nome, formValues.email);
