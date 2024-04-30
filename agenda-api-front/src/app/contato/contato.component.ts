@@ -13,6 +13,8 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms'
 export class ContatoComponent implements OnInit{
 
   formulario : FormGroup = new FormGroup({});
+  contatos: Contato[] = []
+  message?: string;
 
 constructor(
   private service : ContatoService,
@@ -24,20 +26,30 @@ constructor(
   ngOnInit(): void {
    this.formulario = this.fb.group({
     nome: ['',Validators.required],
-    email : ['', Validators.email]
-   })
+    email : ['', [Validators.required, Validators.email]] //Validators.required para identificar o campo como obrigatorio, nesse caso ha duas formas de validação, ebntão coloque dentro de um Array
+   
+  })
 
 
   }
 
-
   submit(){
-    console.log(this.formulario.value)
-    //this.service.save(c).subscribe( 
-      //response => {
-        //console.log(response);
-     // })
+    const formValues = this.formulario.value;
+     const contato : Contato = new Contato(formValues.nome, formValues.email);
+      this.service.save(contato).subscribe( 
+      response => {
+        this.contatos.push(response);
+        console.log(this.contatos);
+      })
 
+    
+    //console.log(this.formulario.value
+ 
   }
 
 }
+
+
+/*
+Metodo push adiciona um elemento ao array de contatos conforme preenchido no formulario
+*/
