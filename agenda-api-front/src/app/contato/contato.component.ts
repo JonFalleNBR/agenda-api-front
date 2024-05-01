@@ -14,7 +14,7 @@ export class ContatoComponent implements OnInit{
 
   formulario : FormGroup = new FormGroup({});
   contatos: Contato[] = []
-  colunas = [ 'id', 'nome', 'email', 'favorito']
+  colunas = [ 'id', 'nome', 'email', 'favorito'] // diz respeito a estruturação das colunas no html 
 
 constructor(
   private service : ContatoService,
@@ -45,8 +45,6 @@ constructor(
     })
 
   }
-
-
 
   submit(){
     const formValues = this.formulario.value;
