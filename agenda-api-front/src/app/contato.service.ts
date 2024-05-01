@@ -24,4 +24,11 @@ export class ContatoService {
     return this.http.get<any>(this.url)
 
   }
+
+
+  favorites(contato : Contato){
+    return this.http.patch(`${this.url}/${contato.id}/favorito`, null)
+  }
+
+
 }

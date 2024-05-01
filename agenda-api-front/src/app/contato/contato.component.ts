@@ -4,6 +4,7 @@ import { ContatoService } from '../contato.service';
 
 
 import { FormBuilder, FormGroup, Validators} from '@angular/forms'
+import { response } from 'express';
 
 @Component({
   selector: 'app-contato',
@@ -45,6 +46,16 @@ constructor(
     })
 
   }
+
+
+  favoritar(contato: Contato){
+    this.service.favorites(contato).subscribe(response => {
+      contato.favorito = !contato.favorito; 
+
+    })
+
+  }
+
 
   submit(){
     const formValues = this.formulario.value;
