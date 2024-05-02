@@ -19,6 +19,7 @@ import { MatIconModule} from '@angular/material/icon';
 import {MatCardModule } from '@angular/material/card'
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import {MatCardModule } from '@angular/material/card'
   ],
   providers: [
     ContatoService,
+   
     provideClientHydration(),
     provideAnimationsAsync()
   ],

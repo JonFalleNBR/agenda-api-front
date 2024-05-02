@@ -41,3 +41,15 @@
 .input-color{
     color: azure;
 }
+
+.message-style{ 
+    border: 1px solid;
+	margin: 10px auto;
+	padding: 15px 10px 15px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+    background-color: rgb(60, 172, 60);
+	max-width: 460px;
+    color: white;
+    text-shadow: #3646a0 2px, 4px, 3px;
+}

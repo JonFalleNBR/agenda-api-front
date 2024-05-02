@@ -6,6 +6,7 @@ import { ContatoService } from '../contato.service';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms'
 import { response } from 'express';
 
+
 @Component({
   selector: 'app-contato',
   templateUrl: './contato.component.html',
@@ -14,6 +15,7 @@ import { response } from 'express';
 export class ContatoComponent implements OnInit{
 
   formulario : FormGroup = new FormGroup({});
+  message?: string 
   contatos: Contato[] = []
   colunas = [ 'id', 'nome', 'email', 'favorito'] // diz respeito a estruturação das colunas no html 
 
@@ -64,19 +66,25 @@ constructor(
       response => {
         let lista: Contato[] = [...this.contatos, response]
         this.contatos = lista;
-        //this.contatos.push(response);
-        console.log(this.contatos);
+        this.formulario.reset();
+        this.message = 'Contato cadastrado com sucesso'
       })
-
-    
-    //console.log(this.formulario.value
+      
  
   }
+ 
 
+  
 }
 
 
 /*
+private subscribeToSuccessMessage( ){ 
+  this.message.successMessage$.subscribe(message => {
+    this.message = message;
+  })
+}
+
 Metodo push adiciona um elemento ao array de contatos conforme preenchido no formulario
 
 a troca de logica do push para o array de lista com spread operator visando criar uma lista instantanea a cada novo contato adicionado 
