@@ -62,7 +62,9 @@ constructor(
      const contato : Contato = new Contato(formValues.nome, formValues.email);
       this.service.save(contato).subscribe( 
       response => {
-        this.contatos.push(response);
+        let lista: Contato[] = [...this.contatos, response]
+        this.contatos = lista;
+        //this.contatos.push(response);
         console.log(this.contatos);
       })
 
@@ -76,4 +78,11 @@ constructor(
 
 /*
 Metodo push adiciona um elemento ao array de contatos conforme preenchido no formulario
+
+a troca de logica do push para o array de lista com spread operator visando criar uma lista instantanea a cada novo contato adicionado 
+
+[...this.contatos, response] é uma tecnica que adiciona de maneira procedural novos itens conforme eles vão sendo cadastrados, os ... representa os objetos que ja 
+estão no array, e o this.contato significa que esta adiionando mais um
+
+O response como ja é de conhecimento, tem conexão com a regra implementada no back end
 */
