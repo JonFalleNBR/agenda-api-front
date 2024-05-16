@@ -30,5 +30,9 @@ export class ContatoService {
     return this.http.patch(`${this.url}/${contato.id}/favorito`, null)
   }
 
+  paginacao(page: number = 1): Observable<Contato[]>{
+    return this.http.get<Contato[]>(`${this.url}/paginacao?page=${page}`)
+  }
+
 
 }

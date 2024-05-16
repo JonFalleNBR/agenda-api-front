@@ -5,6 +5,7 @@ import { ContatoService } from '../contato.service';
 
 import { FormBuilder, FormGroup, Validators} from '@angular/forms'
 import { response } from 'express';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -18,6 +19,10 @@ export class ContatoComponent implements OnInit{
   message?: string 
   contatos: Contato[] = []
   colunas = [ 'id', 'nome', 'email', 'favorito'] // diz respeito a estruturação das colunas no html 
+
+  totalContatos: number = 0;
+  pageSize: number = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 50];
 
 constructor(
   private service : ContatoService,
@@ -43,8 +48,9 @@ constructor(
 }
 
   listarContatos(){
-    this.service.list().subscribe(response => {
-      this.contatos = response
+    this.service.paginacao().subscribe(response => {
+      this.contatos = response;
+      this.totalContatos = response.length;
     })
 
   }
@@ -72,6 +78,14 @@ constructor(
       
  
   }
+
+  onPageChange(event : PageEvent) {
+    const pageNumber = event.pageIndex + 1; 
+    this.service.paginacao(pageNumber).subscribe(response => {
+      this.contatos = response;
+    });
+  }
+
  
 
   

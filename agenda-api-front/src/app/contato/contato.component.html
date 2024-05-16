@@ -39,6 +39,12 @@
                 <tr mat-header-row *matHeaderRowDef="colunas"></tr>
                 <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
             </table>
+
+            <mat-paginator [length]="totalContatos"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="pageSizeOptions"
+            (page)="onPageChange($event)">
+</mat-paginator>
         </mat-card>
     </mat-tab>
     <mat-tab> 
